@@ -4,12 +4,28 @@
 
 ## 🚀 Özellikler
 
+### 🎯 Temel Özellikler
 - **Ultra Performans Modu**: GPU destekli hızlı analiz
 - **Gelişmiş İnsan Tespiti**: YOLO v8 tabanlı hassas tespit
 - **Çoklu Rapor Formatı**: Excel, Word ve grafik raporları
 - **Profesyonel Arayüz**: Modern PyQt5 GUI
 - **Batch İşlem**: Çoklu video analizi
 - **Gerçek Zamanlı İzleme**: Canlı video görüntüleme
+
+### 🎨 Yeni UI Özellikleri (v2.0)
+- **3 Panelli Tasarım**: 
+  - Sol Panel: Video kontrolleri ve rapor butonları
+  - Orta Panel: Video önizleme (genişleyebilir)
+  - Sağ Panel: Ayarlar ve log görüntüleme
+- **Geliştirilmiş Butonlar**: Büyük boyutlu (45px) ve hover efektli
+- **Singleton Pattern**: Tek uygulama örneği garantisi
+- **Zorla Çıkış**: Güvenli uygulama sonlandırma
+- **Yeniden Başlatma**: Tek tıkla uygulama yenileme
+
+### 📋 Geliştirilmiş Raporlama
+- **Word Raporu**: Resimler 2x2 tablo formatında düzenli görünüm
+- **Tablo Tabanlı Layout**: Border'lı ve organize edilmiş görsel sunumu
+- **Gelişmiş Formatlar**: Profesyonel rapor şablonları
 
 ## 📋 Sistem Gereksinimleri
 
@@ -75,6 +91,25 @@
 
 ## 🎯 Kullanım
 
+### 🖥️ Arayüz Düzeni (3 Panel)
+
+#### Sol Panel - Video Kontrolleri ve Raporlar
+- **Video İşlemleri**: Yükle, başlat, durdur butonları
+- **Canlı Kamera**: Kamera başlatma/durdurma
+- **Batch İşlem**: Çoklu video analizi
+- **Rapor Butonları**: Word, Grafik ve Tüm Raporlar (büyük boyutlu)
+
+#### Orta Panel - Video Önizleme
+- **Ana Görüntü**: Video oynatma alanı (genişleyebilir)
+- **Tespit Görünümü**: Nesne tespiti overlay'i
+- **Tam Ekran**: Video önizleme için optimize edilmiş alan
+
+#### Sağ Panel - Ayarlar ve Loglar
+- **Hassasiyet Ayarları**: 4 seviyeli hassasiyet kontrolü
+- **Nesne Seçimi**: Tespit edilecek objeler (checkbox'lar)
+- **Log Görüntüleme**: Sistem logları ve durum mesajları
+- **Sistem Kontrolleri**: Zorla çıkış ve yeniden başlatma
+
 ### Temel Çalıştırma
 
 ```bash
@@ -102,9 +137,11 @@ python3 analiz.py
 - Pasta grafikleri
 
 ### Word Raporu (.docx)
-- Profesyonel rapor formatı
-- Görsellerle desteklenen analiz
-- Özet ve öneriler
+- **Yeni Tablo Formatı**: Resimler 2x2 tablo düzeninde
+- **Border Destekli**: Organize edilmiş görsel sunumu
+- **Profesyonel rapor formatı**: Geliştirilmiş layout
+- **Görsellerle desteklenen analiz**: Tablo içinde düzenli resimler
+- **Özet ve öneriler**: Kapsamlı analiz sonuçları
 
 ### Grafik Raporları (.png)
 - Zaman çizelgesi
@@ -121,9 +158,47 @@ python3 analiz.py
 - **YÜKSEK**: Hassas tespit
 - **ULTRA MAX**: En hassas mod (önerilir)
 
+### 🔒 Sistem Güvenliği
+
+#### Singleton Pattern
+- **Tek Örnek**: Aynı anda sadece bir uygulama çalışır
+- **Kaynak Koruması**: Çoklu açılım engellenir
+- **Güvenli Başlatma**: Otomatik örnek kontrolü
+
+#### Güvenli Çıkış Sistemi
+- **Zorla Çıkış**: Acil durum sonlandırması
+- **Yeniden Başlatma**: Hızlı uygulama yenileme
+- **Kaynak Temizliği**: Güvenli bellek yönetimi
+
 ### GPU Desteği
 
 CUDA uyumlu GPU varsa otomatik olarak aktif olur. CPU modu da desteklenir.
+
+## 🆕 Sürüm Güncellemeleri
+
+### v2.0 - UI Yenileme ve Gelişmiş Özellikler
+
+#### 🎨 Arayüz İyileştirmeleri
+- **3 Panelli Tasarım**: Sol-Orta-Sağ panel düzeni
+- **Responsive Layout**: Orta panel genişleyebilir tasarım
+- **Büyük Butonlar**: 45px yükseklik, hover efektli
+- **Gelişmiş Renkler**: Modern renk paleti ve gradient'lar
+
+#### 🔧 Teknik İyileştirmeler
+- **Singleton Pattern**: Çoklu açılım engelleme
+- **Zorla Çıkış**: Güvenli uygulama sonlandırma
+- **Kaynak Yönetimi**: Gelişmiş bellek optimizasyonu
+- **YOLO Parametreleri**: TARGET_CLASSES ve ACTIVE_CLASSES düzeltmeleri
+
+#### 📄 Rapor Geliştirmeleri
+- **Tablo Tabanlı Word**: 2x2 resim düzeni
+- **Border Desteği**: XML parse ile border ekleme
+- **Organize Layout**: Düzenli görsel sunumu
+
+#### 🚀 Performans
+- **Batch Processing**: Gelişmiş çoklu video işleme
+- **Hata Düzeltmeleri**: Daha stabil çalışma
+- **UI Optimizasyonu**: Daha hızlı arayüz tepkisi
 
 ## 🐛 Sorun Giderme
 
