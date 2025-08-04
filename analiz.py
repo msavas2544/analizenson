@@ -2001,8 +2001,8 @@ class MainWindow(QMainWindow):
         video_preview_layout.addWidget(self.video_display_label)
         video_preview_group.setLayout(video_preview_layout)
         
-        # ORTA KISIM: Video oynatma kontrolleri
-        video_controls_group = QGroupBox("🎮 Video Oynatma Kontrolleri")
+        # ORTA KISIM: Video oynatma kontrolleri - YEŞİL TEMA
+        video_controls_group = QGroupBox("🎮 Video Kontrolleri (🟢 Yeşil: Normal | 🔴 Kırmızı: Hareket)")
         video_controls_group.setStyleSheet("""
             QGroupBox {
                 font-weight: bold;
@@ -2012,24 +2012,48 @@ class MainWindow(QMainWindow):
                 border-radius: 8px;
                 margin-top: 10px;
                 padding-top: 15px;
+                background-color: #2c3e50;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
                 left: 10px;
                 padding: 0 8px 0 8px;
+                background-color: #27ae60;
+                border-radius: 4px;
             }
         """)
         video_controls_layout = QVBoxLayout()
         video_controls_layout.setSpacing(5)
         video_controls_layout.setContentsMargins(8, 8, 8, 8)
         
-        # Timeline widget (eğer varsa)
+        # Timeline widget (eğer varsa) - YEŞİL TEMA İLE
         try:
             self.timeline_widget = TimelineWidget()
             self.timeline_widget.setFixedHeight(50)
         except:
             self.timeline_widget = QSlider(Qt.Horizontal)
             self.timeline_widget.setFixedHeight(50)
+            # Timeline için yeşil stil
+            self.timeline_widget.setStyleSheet("""
+                QSlider::groove:horizontal {
+                    border: 2px solid #27ae60;
+                    height: 10px;
+                    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+                        stop:0 #2ecc71, stop:1 #27ae60);
+                    border-radius: 5px;
+                }
+                QSlider::handle:horizontal {
+                    background: #e74c3c;
+                    border: 2px solid #c0392b;
+                    width: 20px;
+                    margin: -5px 0;
+                    border-radius: 10px;
+                }
+                QSlider::handle:horizontal:hover {
+                    background: #ec7063;
+                    border: 2px solid #e74c3c;
+                }
+            """)
         video_controls_layout.addWidget(self.timeline_widget)
         
         # Oynatma butonları
@@ -2056,25 +2080,27 @@ class MainWindow(QMainWindow):
             }
         """)
         
-        # Progress bar ekle - YEŞİL RENKLE
+        # Progress bar ekle - YEŞİL RENKLE, HAREKET İÇİN KIRMIZI GÖSTERGELER
         self.progress_bar = QProgressBar()
-        self.progress_bar.setFixedHeight(25)
+        self.progress_bar.setFixedHeight(30)  # Biraz daha yüksek
         self.progress_bar.setStyleSheet("""
             QProgressBar {
-                background-color: #34495e;
-                border: 2px solid #27ae60;
-                border-radius: 8px;
+                background-color: #2c3e50;
+                border: 3px solid #27ae60;
+                border-radius: 10px;
                 text-align: center;
                 color: white;
                 font-weight: bold;
                 font-size: 12px;
             }
             QProgressBar::chunk {
-                background-color: #27ae60;
-                border-radius: 6px;
-                margin: 1px;
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
+                    stop:0 #27ae60, stop:0.5 #2ecc71, stop:1 #27ae60);
+                border-radius: 7px;
+                margin: 2px;
             }
         """)
+        self.progress_bar.setFormat("🟢 Analiz İlerlemesi: %p% (%v/%m)")  # Yeşil emoji ile
         self.progress_bar.setVisible(False)
         
         playback_layout.addWidget(self.btn_play_pause)
@@ -2289,15 +2315,26 @@ class MainWindow(QMainWindow):
         objects_layout.setSpacing(5)
         objects_layout.setContentsMargins(8, 8, 8, 8)
         
-        # Basit nesne checkboxları - Türkçe isimlerle
+        # Basit nesne checkboxları - Türkçe isimlerle - SADECE TEMEL NESNELER
         self.object_checkboxes = {}
-        main_objects = ['person', 'car', 'bicycle', 'motorcycle', 'cat', 'dog']
+        main_objects = ['person', 'car', 'motorcycle']  # Sadece temel 3 nesne
         
         for obj_name in main_objects:
             # Türkçe isim kullan
             turkish_name = self.OBJECT_NAMES_TURKISH.get(obj_name, obj_name.capitalize())
             checkbox = QCheckBox(f"🎯 {turkish_name}")
-            checkbox.setStyleSheet("color: white; margin: 2px;")
+            checkbox.setStyleSheet("""
+                QCheckBox {
+                    color: white; 
+                    margin: 5px; 
+                    padding: 3px;
+                    font-weight: bold;
+                }
+                QCheckBox:hover {
+                    background-color: #34495e;
+                    border-radius: 3px;
+                }
+            """)
             if obj_name == 'person':
                 checkbox.setChecked(True)  # person varsayılan seçili
             self.object_checkboxes[obj_name] = checkbox
@@ -2352,9 +2389,9 @@ class MainWindow(QMainWindow):
         log_layout.setSpacing(5)
         log_layout.setContentsMargins(8, 8, 8, 8)
         
-        # Log display
+        # Log display - DAHA BÜYÜK BOYUT
         self.log_display = QTextEdit()
-        self.log_display.setFixedHeight(200)
+        self.log_display.setFixedHeight(300)  # 200'den 300'e çıkardım
         self.log_display.setReadOnly(True)
         self.log_display.setStyleSheet("""
             QTextEdit {
